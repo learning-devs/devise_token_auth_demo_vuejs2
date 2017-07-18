@@ -30,6 +30,13 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
+  data: {
+	access-token: '',
+	token-type: '',
+	client: '',
+	expiry: '',
+	uid: ''
+  },
   router: router,
   render: h => h(App)
 })

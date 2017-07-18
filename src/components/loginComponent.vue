@@ -41,7 +41,28 @@
 		},
 		methods:{
 			login(){
+				this.$http.get('auth',{
+						params:  {email: this.user.email,
+									password: this.user.password}
+					})
+					.then(response =>{
+						// success callback
+						return response.headers;
 
+					},response =>{
+						// error callback
+						console.log(response);
+						
+					})
+					.then(response =>{
+						//Get headers response
+
+						access-token = response.access-token;
+						token-type = response.token-type;
+						client = response.client;
+						expiry = response.expiry;
+						uid = response.uid;
+					});
 			}
 		}
 	}
