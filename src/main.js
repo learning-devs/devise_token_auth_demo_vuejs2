@@ -11,6 +11,11 @@ Vue.use(VueMaterial);
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
+
+var version = '/api/v1/'
+
+Vue.http.options.root = 'http://localhost:3000' + version
+
 Vue.material.registerTheme('blue', {
   primary: 'blue',
   accent: 'teal',
