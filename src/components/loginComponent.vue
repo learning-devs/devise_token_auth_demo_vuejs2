@@ -48,7 +48,7 @@
 			}
 		},
 		created() {
-			if(auth.tokenValid()){
+			if(auth.tokenValid(this)){
 				this.$router.push({ name: 'products' });
 			}
 		}

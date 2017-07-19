@@ -3,7 +3,7 @@ import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
 
 
-export default {
+export const auth = {
 	user: {
 		authenticated: false
 	},
