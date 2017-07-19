@@ -33,7 +33,7 @@
 			</md-card-content>
 
 		</md-card>
-
+		<br>
 		<!-- Tabla de productos -->
 		<md-card md-with-hover>
 			<md-card-content>
