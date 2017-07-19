@@ -63,7 +63,7 @@
 		},
 		methods: {
 			register() {
-				auth.login(this,this.user,'products');
+				auth.signup(this,this.user,'products');
 			}
 		}
 	}
