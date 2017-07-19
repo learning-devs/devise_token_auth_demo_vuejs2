@@ -1,4 +1,4 @@
-# devise_token_auth_demo_vuejs2
+# API demo Vue.js Client 
 
 > A Vue.js project
 
