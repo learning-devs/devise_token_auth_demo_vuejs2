@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-if="this.user.name.length > 0">
-			Hola {{ this.user.name}}
+			 <md-button>Hola, {{ this.user.name}}</md-button>
 		</div>
 
 		<div v-else>
@@ -11,8 +11,7 @@
 				<md-button class="md-raised" >Registro</md-button>
 			</router-link>
 		</div>
-		
-		
+
 	</div>
 </template>
 
@@ -21,23 +20,23 @@
 	export default {
 		data() {
 			return {
-				user:{
+				user: {
 					name: ''
 				}
 			}
 		},
-		methods:{
-			setUser(){
+		methods: {
+			setUser() {
 				this.user.name = user_info.name;
 				console.log("usuario " + this.user.name)
 			}
 		},
-		watch:{
-			$route(){
+		watch: {
+			$route() {
 				this.setUser();
 			}
 		},
-		created(){
+		created() {
 			this.setUser();
 		}
 	}

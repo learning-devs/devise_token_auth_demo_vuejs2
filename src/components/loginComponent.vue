@@ -49,7 +49,7 @@
 				.then(response => {
 					// success callback
 					return response.headers;
-				},response => {
+				}, response => {
 					// error callback
 					alert("Error, verifique los datos");
 				})
@@ -60,34 +60,35 @@
 						header.client = response.map["client"][0];
 						header.expiry = response.map["expiry"][0];
 						header.uid = response.map["uid"][0];
-						this.$router.push({name: 'products'});
+
+						this.validarToken();
 					}
 				});
 			},
-			validarToken(){
-				this.$http.get('auth/validate_token',{
+			validarToken() {
+				this.$http.get('auth/validate_token', {
 					headers: {
 						uid: header.uid,
 						client: header.client,
 						'access-token': header.access_token
 					}
 				})
-				.then(response=>{
+				.then(response => {
 					return response.json();
 				})
-				.then(response=>{
+				.then(response => {
 					if (response.success) {
 						user_info.name = response.data.name;
 						user_info.email = response.data.email;
-						this.$router.push({name: 'products'});
+						this.$router.push({ name: 'products' });
 					}
 				});
 			}
 		},
-		created(){
+		created() {
 			this.validarToken();
 		}
-		
+
 	}
 </script>
 
