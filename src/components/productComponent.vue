@@ -80,7 +80,8 @@
 					name: '',
 					description: '',
 					price: ''
-				}
+				},
+				products: {}
 			}
 		},
 		methods: {

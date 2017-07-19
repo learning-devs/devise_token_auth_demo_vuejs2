@@ -1,6 +1,6 @@
-import { endpoints } from './../models/endpoints.js'
-import { header_names } from './../models/localStorageVariables.js'
-import { user_names } from './../models/localStorageVariables.js'
+import { endpoints } from './../endpoints.js'
+import { header_names } from './../localStorageVariables.js'
+import { user_names } from './../localStorageVariables.js'
 
 
 export default{
@@ -24,16 +24,19 @@ export default{
 				.then(response =>{
 					if (response) {
 						this.setAuthHeader(response);
-						if (this.tokenValid && redirect){
+						if (this.tokenValid(context) && redirect){
 							this.user.authenticated = true;
 							context.$router.push({ name: redirect });
 						}
 					}
 				});
 	},
-	tokenValid(){
-		var header = this.getAuthHeader
-		this.$http.get(endpoints.auth.validate_token, {
+	/*
+		context = El conexto del componente
+	 */
+	tokenValid(context){
+		var header = this.getAuthHeader;
+		context.$http.get(endpoints.auth.validate_token, {
 			headers: {
 				uid: header.uid,
 				client: header.client,
@@ -105,14 +108,14 @@ export default{
 		
 	},
 	getAuthHeader(){
-		return header: {
+		var header = {
 			uid: localStorage.getItem(header_names.uid),
 			client:  localStorage.getItem(header_names.client),
 			access_token: localStorage.getItem(header_names.access_token),
 			token_type: localStorage.getItem(header_names.token_type),
 			expiry: localStorage.getItem(header_names.expiry)
-
 		}
+		return header
 	},
 	/*
 		data = Objeto que contiene el header de la respuesta del servicio
