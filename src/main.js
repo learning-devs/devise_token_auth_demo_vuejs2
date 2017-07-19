@@ -11,13 +11,13 @@ Vue.use(VueResource);
 
 var version = '/api/v1/'
 
-Vue.http.options.root = 'http://localhost:3000' + version
+Vue.http.options.root = 'http://localhost:3000' + version;
 
 Vue.material.registerTheme('blue', {
-  primary: 'blue',
-  accent: 'teal',
-  warn: 'red',
-  background: 'white'
+	primary: 'blue',
+	accent: 'teal',
+	warn: 'red',
+	background: 'white'
 })
 
 const router = new VueRouter({
@@ -25,15 +25,16 @@ const router = new VueRouter({
 	mode: 'history'
 })
 
+export var header = {
+	access_token: '',
+	token_type: '',
+	client: '',
+	expiry: '',
+	uid: ''
+}
+
 new Vue({
-  el: '#app',
-  data: {
-  	access_token: '',
-  	token_type: '',
-  	client: '',
-  	expiry: '',
-  	uid: ''
-  },
-  router: router,
-  render: h => h(App)
+	el: '#app',
+	router: router,
+	render: h => h(App)
 })

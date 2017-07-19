@@ -21,7 +21,7 @@
 						<md-input type="password" v-model="user.password"></md-input>
 					</md-input-container>
 
-					<md-button class="md-raised md-accent" md-theme="blue">Iniciar Sesión</md-button>
+					<md-button type="submit" class="md-raised md-accent" md-theme="blue">Iniciar Sesión</md-button>
 
 				</form>
 			</md-card-content>
@@ -32,6 +32,7 @@
 
 
 <script>
+	import { header } from './../main.js'
 	export default {
 		data() {
 			return {
@@ -51,17 +52,19 @@
 				})
 				.then(response => {
 					// success callback
+					console.log("bien" + response);
 					return response.headers;
 				},response => {
 					// error callback
-					console.log(response);
+					console.log("error" + response);
 				})
 				.then(response => {
-					access_token = response.access-token;
-					token_type = response.token-type;
-					client = response.client;
-					expiry = response.expiry;
-					uid = response.uid;
+					console.log(response);
+					header.access_token = response.map["access-token"][0];
+					header.token_type = response.map["token-type"][0];
+					header.client = response.map["client"][0];
+					header.expiry = response.map["expiry"][0];
+					header.uid = response.map["uid"][0];
 				});
 			}
 		}
