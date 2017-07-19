@@ -3,37 +3,37 @@ import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
 
 
-export default{
+export default {
 	user: {
-    	authenticated: false
-  	},
-	 /*
-		context = El conexto del componente
-		creds = La data que se enviara al servicio
-		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
-	 */
-	login(context, creds, redirect) {
-		context.$http.post(endpoints.auth.sign_in, creds)
-				.then(response =>{
-					// success callback
-					return response.headers;
-				},response=>{
-					// error callback
-					context.alert("Error, verifique los datos");
-				})
-				.then(response =>{
-					if (response) {
-						this.setAuthHeader(response);
-						if (this.tokenValid(context) && redirect){
-							this.user.authenticated = true;
-							context.$router.push({ name: redirect });
-						}
-					}
-				});
+		authenticated: false
 	},
 	/*
 		context = El conexto del componente
-	 */
+		creds = La data que se enviara al servicio
+		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
+	*/
+	login(context, creds, redirect) {
+		context.$http.post(endpoints.auth.sign_in, creds)
+		.then(response =>{
+			// success callback
+			return response.headers;
+		},response=>{
+			// error callback
+			context.alert("Error, verifique los datos");
+		})
+		.then(response =>{
+			if (response) {
+				this.setAuthHeader(response);
+				if (this.tokenValid(context) && redirect){
+					this.user.authenticated = true;
+					context.$router.push({ name: redirect });
+				}
+			}
+		});
+	},
+	/*
+		context = El conexto del componente
+	*/
 	tokenValid(context){
 		var header = this.getAuthHeader;
 		context.$http.get(endpoints.auth.validate_token, {
@@ -61,7 +61,7 @@ export default{
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
-	 */
+	*/
 	signup(context,creds,redirect){
 		context.$http.post(endpoints.auth.base, creds)
 		.then(response => {
@@ -71,7 +71,7 @@ export default{
 			// error callback
 			context.alert("Error, verifique los datos");
 		})
-		.then(response => {	
+		.then(response => {
 			if (response){
 				this.setAuthHeader(response);
 				if (this.tokenValid && redirect){
@@ -83,7 +83,7 @@ export default{
 	/*
 		context = El conexto del componente
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
-	 */
+	*/
 	logout(context,redirect){
 		context.$http.delete(endpoints.auth.base, {
 			headers: {
@@ -105,7 +105,7 @@ export default{
 				}
 			}
 		})
-		
+
 	},
 	getAuthHeader(){
 		var header = {
@@ -135,11 +135,12 @@ export default{
 		localStorage.setItem(user_names.email,json.data.email);
 	},
 	getUserInformation(){
-		return user: {
+		var user = {
 			name: localStorage.getItem(user_names.name),
 			email: localStorage.getItem(user_names.email),
 			authenticated: this.user.authenticated
 		}
+		return user
 	},
 	clearAuthHeader(){
 		localStorage.removeItem(header_names.access_token);
