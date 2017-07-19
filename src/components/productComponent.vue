@@ -6,27 +6,27 @@
 
 <script>
 	export default {
-		data(){
+		data() {
 		},
-		methods:{
-			created(){
-				this.$http.get('products',{
-						headers: {
-							access-token: access-token,
-							token-type: token-type,
-							client: client,
-							expiry: expiry,
-							uid: uid
-						}
-					})
-					.then(response =>{
-						return response.json()
-					},response=>{
-						// error callback
-					})
-					.then(response =>{
-						
-					});
+		methods: {
+			created() {
+				this.$http.get('products', {
+					headers: {
+						access_token: access-token,
+						token_type: token-type,
+						client: client,
+						expiry: expiry,
+						uid: uid
+					}
+				})
+				.then(response => {
+					return response.json()
+				},response=> {
+					// error callback
+				})
+				.then(response => {
+
+				});
 			}
 		}
 	}

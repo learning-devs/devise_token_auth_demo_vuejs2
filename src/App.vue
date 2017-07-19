@@ -8,10 +8,13 @@
 
 			<h2 class="md-title" style="flex: 1">Demo API</h2>
 
-			<md-button class="md-raised" v-on:click:"login">Iniciar Sesión</md-button>
+
+			<router-link tag="md-button" to="login" class="md-raised ">Iniciar Sesión</router-link>
+
 			<router-link v-bind:to="{ name:'registerUser' }">
 				<md-button class="md-raised" >Registro</md-button>
-			</router-link>			
+			</router-link>
+
 		</md-toolbar>
 
 		<router-view></router-view>
@@ -20,12 +23,12 @@
 
 <script>
 	export default {
-		data(){
-			return{
+		data() {
+			return {
 			}
 		},
-		methods:{
-			login(){
+		methods: {
+			login() {
 
 			}
 		}
@@ -33,5 +36,4 @@
 </script>
 
 <style>
-
 </style>

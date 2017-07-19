@@ -1,6 +1,7 @@
 <template>
 	<div class="container">
 		<md-card md-with-hover>
+
 			<md-card-header>
 				<div class="md-title">Iniciar Sesión</div>
 			</md-card-header>
@@ -24,6 +25,7 @@
 
 				</form>
 			</md-card-content>
+
 		</md-card>
 	</div>
 </template>
@@ -31,38 +33,36 @@
 
 <script>
 	export default {
-		data(){
-			return{
-				user{
-					email: ''
+		data() {
+			return {
+				user: {
+					email: '',
 					password: ''
 				}
 			}
 		},
-		methods:{
-			login(){
-				this.$http.get('auth',{
-						params:  {email: this.user.email,
-									password: this.user.password}
-					})
-					.then(response =>{
-						// success callback
-						return response.headers;
-
-					},response =>{
-						// error callback
-						console.log(response);
-						
-					})
-					.then(response =>{
-						//Get headers response
-
-						access-token = response.access-token;
-						token-type = response.token-type;
-						client = response.client;
-						expiry = response.expiry;
-						uid = response.uid;
-					});
+		methods: {
+			login() {
+				this.$http.get('auth', {
+					params: {
+						email: this.user.email,
+						password: this.user.password
+					}
+				})
+				.then(response => {
+					// success callback
+					return response.headers;
+				},response => {
+					// error callback
+					console.log(response);
+				})
+				.then(response => {
+					access_token = response.access-token;
+					token_type = response.token-type;
+					client = response.client;
+					expiry = response.expiry;
+					uid = response.uid;
+				});
 			}
 		}
 	}

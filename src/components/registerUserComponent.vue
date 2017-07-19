@@ -25,7 +25,7 @@
 						</md-layout>
 					</md-layout>
 
-					
+
 					<md-layout md-gutter>
 						<md-layout>
 							<md-input-container>
@@ -56,7 +56,7 @@
 	export default {
 		data(){
 			return{
-				user{
+				user: {
 					name: '',
 					email: '',
 					password: '',
@@ -64,8 +64,8 @@
 				}
 			}
 		},
-		methods:{
-			register(){
+		methods: {
+			register() {
 
 			}
 		}
