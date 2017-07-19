@@ -78,7 +78,7 @@
 						header.client = response.map["client"][0];
 						header.expiry = response.map["expiry"][0];
 						header.uid = response.map["uid"][0];
-						this.$router.push({name: 'products'}});
+						this.$router.push({name: 'products'});
 					}
 				});
 			}
