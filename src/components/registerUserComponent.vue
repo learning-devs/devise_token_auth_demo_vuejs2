@@ -50,6 +50,7 @@
 
 <script>
 	import { header } from './../main.js'
+	import { user_info } from './../main.js'
 	export default {
 		data(){
 			return{

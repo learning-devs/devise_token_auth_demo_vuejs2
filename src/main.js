@@ -18,12 +18,12 @@ Vue.material.registerTheme('blue', {
 	accent: 'teal',
 	warn: 'red',
 	background: 'white'
-})
+});
 
 const router = new VueRouter({
 	routes: routes,
 	mode: 'history'
-})
+});
 
 export var header = {
 	access_token: '',
@@ -31,7 +31,12 @@ export var header = {
 	client: '',
 	expiry: '',
 	uid: ''
-}
+};
+
+export var user_info = {
+	name: '',
+	email: ''
+};
 
 new Vue({
 	el: '#app',

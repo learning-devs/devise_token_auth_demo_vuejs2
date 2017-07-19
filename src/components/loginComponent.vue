@@ -33,6 +33,7 @@
 
 <script>
 	import { header } from './../main.js'
+	import { user_info } from './../main.js'
 	export default {
 		data() {
 			return {
@@ -63,26 +64,30 @@
 					}
 				});
 			},
-			created(){
-				this.$http.get('validate_token',{
+			validarToken(){
+				this.$http.get('auth/validate_token',{
 					headers: {
 						uid: header.uid,
 						client: header.client,
-						["access-token"]: header.access_token
+						'access-token': header.access_token
 					}
 				})
 				.then(response=>{
-					return response.json()
-				},response=>{
-					console.log(response);
+					return response.json();
 				})
 				.then(response=>{
 					if (response.success) {
+						user_info.name = response.data.name;
+						user_info.email = response.data.email;
 						this.$router.push({name: 'products'});
 					}
 				});
 			}
+		},
+		created(){
+			this.validarToken();
 		}
+		
 	}
 </script>
 
