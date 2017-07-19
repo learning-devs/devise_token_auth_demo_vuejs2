@@ -23,7 +23,7 @@ const ProductComponent = resolve =>{
 export const routes = [
 	{ path:'', component: LoginComponent, name: 'login'},
 	{ path:'/users/create', component: RegisterUserComponent, name: 'registerUser'},
-	{ path:'/products', component: LoginComponent, name: 'products'},
+	{ path:'/products', component: ProductComponent, name: 'products'},
 	{ path:'/recover-password', component: RecoverPasswordComponent, name: 'recoverPassword'},
 	{ path:'*', redirect: '/'}
 ]

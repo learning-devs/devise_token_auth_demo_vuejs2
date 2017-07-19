@@ -1,8 +1,9 @@
 <template>
 	<div class="container">
 		<md-card md-with-hover>
+			
 			<md-card-header>
-				<div class="md-title">Recuperar Contraseña</div>
+				<div class="md-display-1">Recuperar Contraseña</div>
 			</md-card-header>
 
 			<md-card-content>
@@ -15,7 +16,7 @@
 					</md-input-container>
 
 					<md-button class="md-raised md-accent" md-theme="blue">Recuperar Contraseña</md-button>
-					
+
 				</form>
 			</md-card-content>
 		</md-card>
@@ -41,8 +42,4 @@
 </script>
 
 <style scoped>
-	.container {
-		width: 70%;
-		margin: 50px auto;
-	}
 </style>

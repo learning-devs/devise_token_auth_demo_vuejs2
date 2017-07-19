@@ -3,7 +3,7 @@
 		<md-card md-with-hover>
 
 			<md-card-header>
-				<div class="md-title">Iniciar Sesión</div>
+				<div class="md-display-1">Iniciar Sesión</div>
 			</md-card-header>
 
 			<md-card-content>
@@ -69,8 +69,4 @@
 </script>
 
 <style scoped>
-	.container {
-		width: 70%;
-		margin: 50px auto;
-	}
 </style>
