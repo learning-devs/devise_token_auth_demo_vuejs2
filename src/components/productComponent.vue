@@ -72,6 +72,7 @@
 </template>
 
 <script>
+	import { auth } from './../utils/products.js'
 	export default {
 		data() {
 			return {
@@ -83,28 +84,12 @@
 			}
 		},
 		methods: {
-			created() {
-				this.$http.get('products', {
-					headers: {
-						access_token: access-token,
-						token_type: token-type,
-						client: client,
-						expiry: expiry,
-						uid: uid
-					}
-				})
-				.then(response => {
-					return response.json()
-				},response=> {
-					// error callback
-				})
-				.then(response => {
-
-				});
-			},
 			register() {
 				// Para registrar el productico
 			}
+		},
+		created(){
+			//Consultar la lista de producticos
 		}
 	}
 </script>

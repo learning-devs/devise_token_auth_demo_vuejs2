@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<div v-if="this.user.name.length > 0">
+		<div v-if="this.user.authenticated">
 			 <md-button>Hola, {{ this.user.name}}</md-button>
+			 <md-button v-on:click="logout">Cerrar sesion</md-button>
 		</div>
 
 		<div v-else>
@@ -16,28 +17,27 @@
 </template>
 
 <script type="text/javascript">
-	import { user_info } from './../main.js'
+	import { auth } from './../../utils/auth.js'
+
 	export default {
 		data() {
 			return {
-				user: {
-					name: ''
-				}
+				user: auth.getUserInformation
 			}
 		},
 		methods: {
 			setUser() {
-				this.user.name = user_info.name;
+				this.user = auth.getUserInformation;
 				console.log("usuario " + this.user.name)
+			},
+			logout(){
+				auth.logout(this,'login');
 			}
 		},
 		watch: {
 			$route() {
 				this.setUser();
 			}
-		},
-		created() {
-			this.setUser();
 		}
 	}
 </script>

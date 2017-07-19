@@ -15,19 +15,10 @@
 </template>
 
 <script>
-	import Navegation from './components/navegation.vue'
+	import Navegation from './components/style/navegation.vue'
 	export default {
 		components: {
 			navegation: Navegation
-		},
-		data() {
-			return {
-			}
-		},
-		methods: {
-			login() {
-
-			}
 		}
 	}
 </script>
