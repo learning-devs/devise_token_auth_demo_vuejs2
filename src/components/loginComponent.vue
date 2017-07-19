@@ -44,27 +44,42 @@
 		},
 		methods: {
 			login() {
-				this.$http.get('auth', {
-					params: {
-						email: this.user.email,
-						password: this.user.password
-					}
-				})
+				this.$http.post('auth/sign_in', this.user)
 				.then(response => {
 					// success callback
-					console.log("bien" + response);
 					return response.headers;
 				},response => {
 					// error callback
-					console.log("error" + response);
+					alert("Error, verifique los datos");
 				})
 				.then(response => {
+					if (response) {
+						header.access_token = response.map["access-token"][0];
+						header.token_type = response.map["token-type"][0];
+						header.client = response.map["client"][0];
+						header.expiry = response.map["expiry"][0];
+						header.uid = response.map["uid"][0];
+						this.$router.push({name: 'products'});
+					}
+				});
+			},
+			created(){
+				this.$http.get('validate_token',{
+					headers: {
+						uid: header.uid,
+						client: header.client,
+						["access-token"]: header.access_token
+					}
+				})
+				.then(response=>{
+					return response.json()
+				},response=>{
 					console.log(response);
-					header.access_token = response.map["access-token"][0];
-					header.token_type = response.map["token-type"][0];
-					header.client = response.map["client"][0];
-					header.expiry = response.map["expiry"][0];
-					header.uid = response.map["uid"][0];
+				})
+				.then(response=>{
+					if (response.success) {
+						this.$router.push({name: 'products'});
+					}
 				});
 			}
 		}
