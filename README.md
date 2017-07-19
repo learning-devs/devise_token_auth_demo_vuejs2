@@ -1,6 +1,6 @@
 # API demo Vue.js Client 
 
-> A Vue.js project
+> Cliente en Vue.js 2 para consumir API con autenticación usando Devise Token Auth.
 
 ## Build Setup
 
