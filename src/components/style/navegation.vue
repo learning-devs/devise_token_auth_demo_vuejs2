@@ -2,11 +2,12 @@
 	<div>
 		<div v-if="this.user.authenticated">
 			 <md-button>Hola, {{ this.user.name}}</md-button>
+			 <router-link tag="md-button" v-bind:to="{ name: 'changePassword'}" class="md-raised">Cambiar Contraseña</router-link>
 			 <md-button class="md-raised" v-on:click="logout">Cerrar sesion</md-button>
 		</div>
 
 		<div v-else>
-			<router-link tag="md-button" to="login" class="md-raised ">Iniciar Sesión</router-link>
+			<router-link tag="md-button" to="login" class="md-raised">Iniciar Sesión</router-link>
 
 			<router-link v-bind:to="{ name:'registerUser' }">
 				<md-button class="md-raised">Registro</md-button>

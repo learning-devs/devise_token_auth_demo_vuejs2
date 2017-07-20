@@ -110,6 +110,42 @@ export const auth = {
 		})
 
 	},
+	changePasswordFromEmail(){
+
+	},
+	/*
+		parent_context = El contexto donde se mostrada la alerta en caso de error
+		context = El conexto del componente
+		creds = La data que se enviara al servicio
+	*/
+	changePassword(context, creds,parent_context){
+		var header = this.getAuthHeader();
+		context.$http.put(endpoints.auth.password,creds, {
+			headers: {
+				uid: header.uid,
+				client: header.client,
+				'access-token': header.access_token
+			}
+		})
+		.then(response => {
+			return response.json();
+		},response => {
+			if (response.body.errors[0]) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors[0]);
+			}else{
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors.full_messages[0]);
+			}
+			
+		})
+		.then(response => {
+			if (response) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha cambiado la contraseña correctamente');
+			}
+		});
+	},
+	recoverPassword(){
+
+	},
 	getAuthHeader() {
 		var header = {
 			uid: localStorage.getItem(header_names.uid),
