@@ -21,7 +21,7 @@ export const util = {
 		openDialog(ref, context, title, content) {
 			this.alert.title = title
 			this.alert.content = content
-			context.$parent.$refs[ref].open();
+			context.$refs[ref].open();
 		},
 		/*
 			ref =

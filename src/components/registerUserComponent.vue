@@ -63,7 +63,7 @@
 		},
 		methods: {
 			register() {
-				auth.signup(this, this.user, 'products');
+				auth.signup(this, this.user, 'products',this.$parent);
 			}
 		},
 		created() {

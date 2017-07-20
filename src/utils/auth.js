@@ -2,23 +2,23 @@ import { endpoints } from './../endpoints.js'
 import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
 import { util } from './util.js'
-import Alert from './alert'
 
 export const auth = {
 	user: {
 		authenticated: false
 	},
 	/*
+		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 	*/
-	login(context, creds, redirect) {
+	login(context, creds, redirect,parent_context) {
 		context.$http.post(endpoints.auth.sign_in, creds)
 		.then(response => {
 			return response.headers;
 		},response => {
-			util.custom_alert.openDialog('dialog', context, 'Error', response.body.errors[0]);
+			util.custom_alert.openDialog('dialog', parent_context, 'Error', response.body.errors[0]);
 		})
 		.then(response => {
 			if (response) {
@@ -62,17 +62,18 @@ export const auth = {
 		});
 	},
 	/*
+		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 	*/
-	signup(context, creds, redirect) {
+	signup(context, creds, redirect,parent_context) {
 		context.$http.post(endpoints.auth.base, creds)
 		.then(response => {
 			return response.headers;
 		},response => {
 			debugger;
-			util.custom_alert.openDialog('dialog', context, 'Error',response.body.errors.full_messages);
+			util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors.full_messages);
 		})
 		.then(response => {
 			if (response){

@@ -44,7 +44,7 @@
 		},
 		methods: {
 			login() {
-				auth.login(this, this.user, 'products');
+				auth.login(this, this.user, 'products',this.$parent);
 			}
 		},
 		created() {
