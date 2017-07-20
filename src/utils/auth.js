@@ -153,6 +153,6 @@ export const auth = {
 	},
 	clearUserInformation() {
 		localStorage.removeItem(user_names.name);
-		localStorage.removeItem(user_names.user_email);
+		localStorage.removeItem(user_names.email);
 	}
 }
