@@ -2,7 +2,7 @@ import { endpoints } from './../endpoints.js'
 import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
 import { util } from './util.js'
-
+import Alert from './alert'
 
 export const auth = {
 	user: {
@@ -18,7 +18,7 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			alert("Error, verifique los datos");
+			Alert.openDialog('dialog', context, 'Ups...', response.body.errors[0]);
 		})
 		.then(response => {
 			if (response) {
