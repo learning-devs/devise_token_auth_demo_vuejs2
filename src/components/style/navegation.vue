@@ -22,13 +22,13 @@
 	export default {
 		data() {
 			return {
-				user: auth.getUserInformation
+				user: auth.getUserInformation(this)
 			}
 		},
 		methods: {
 			setUser() {
-				this.user = auth.getUserInformation;
-				console.log("usuario " + this.user.name)
+				this.user = auth.getUserInformation(this);
+				console.log(this.user)
 			},
 			logout(){
 				auth.logout(this,'login');

@@ -17,13 +17,15 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			context.alert("Error, verifique los datos");
+			console.log(response);
+			alert("Error, verifique los datos");
 		})
 		.then(response => {
+
 			if (response) {
 				this.setAuthHeader(response);
-				if (this.tokenValid(context) && redirect) {
-					this.user.authenticated = true;
+				this.tokenValid(context)
+				if (this.user.authenticated && redirect) {
 					context.$router.push({ name: redirect });
 				}
 			}
@@ -33,7 +35,7 @@ export const auth = {
 		context = El conexto del componente
 	*/
 	tokenValid(context) {
-		var header = this.getAuthHeader;
+		var header = this.getAuthHeader();
 		context.$http.get(endpoints.auth.validate_token, {
 			headers: {
 				uid: header.uid,
@@ -44,16 +46,13 @@ export const auth = {
 		.then(response => {
 			return response.json();
 		}, response => {
-			console.log(response.body.errors[0])
 		})
 		.then(response => {
 			if (response && response.success) {
 				this.setUserInformation(response);
 				this.user.authenticated = true;
-				return true;
 			}else{
 				this.user.authenticated = false;
-				return false;
 			}
 		});
 	},
@@ -67,7 +66,7 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			context.alert("Error, verifique los datos");
+			alert("Error, verifique los datos");
 		})
 		.then(response => {
 			if (response){
@@ -83,6 +82,7 @@ export const auth = {
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 	*/
 	logout(context, redirect) {
+		var header = this.getAuthHeader();
 		context.$http.delete(endpoints.auth.base, {
 			headers: {
 				uid: header.uid,
@@ -132,7 +132,11 @@ export const auth = {
 		localStorage.setItem(user_names.name ,json.data.name);
 		localStorage.setItem(user_names.email,json.data.email);
 	},
-	getUserInformation() {
+	/*
+		context = El conexto del componente
+	*/
+	getUserInformation(context) {
+		this.tokenValid(context);
 		var user = {
 			name: localStorage.getItem(user_names.name),
 			email: localStorage.getItem(user_names.email),
@@ -149,6 +153,6 @@ export const auth = {
 	},
 	clearUserInformation() {
 		localStorage.removeItem(user_names.name);
-		localStorage.removeItem(user_email);
+		localStorage.removeItem(user_names.user_email);
 	}
 }
