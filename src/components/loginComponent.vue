@@ -48,7 +48,7 @@
 			}
 		},
 		created() {
-			auth.tokenValid(this,'products');
+			auth.tokenValid(this, 'products');
 		}
 
 	}

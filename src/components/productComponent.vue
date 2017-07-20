@@ -91,7 +91,7 @@
 		},
 		created() {
 			//Consultar la lista de producticos
-			auth.tokenValid(this,null,'login');
+			auth.tokenValid(this, null, 'login');
 		}
 	}
 </script>

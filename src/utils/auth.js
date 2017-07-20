@@ -23,7 +23,7 @@ export const auth = {
 		.then(response => {
 			if (response) {
 				this.setAuthHeader(response);
-				this.tokenValid(context,redirect);
+				this.tokenValid(context, redirect);
 			}
 		});
 	},
@@ -32,7 +32,7 @@ export const auth = {
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 		redirect_error = La ruta que redireccionara en caso que el servicio responda con error
 	*/
-	tokenValid(context,redirect,redirect_error) {
+	tokenValid(context, redirect, redirect_error) {
 		var header = this.getAuthHeader();
 		context.$http.get(endpoints.auth.validate_token, {
 			headers: {
@@ -51,12 +51,12 @@ export const auth = {
 				this.setUserInformation(response);
 				this.user.authenticated = true;
 				if (redirect) {
-					util.redirect(context,redirect);
+					util.redirect(context, redirect);
 				}
 			}else{
 				this.user.authenticated = false;
 				if (redirect_error) {
-					util.redirect(context,redirect_error);
+					util.redirect(context, redirect_error);
 				}
 			}
 		});
@@ -76,7 +76,7 @@ export const auth = {
 		.then(response => {
 			if (response){
 				this.setAuthHeader(response);
-				this.tokenValid(context,redirect);
+				this.tokenValid(context, redirect);
 			}
 		});
 	},
@@ -102,7 +102,7 @@ export const auth = {
 				this.clearUserInformation();
 				this.user.authenticated = false;
 				if (redirect) {
-					util.redirect(context,redirect);
+					util.redirect(context, redirect);
 				}
 			}
 		})
@@ -122,18 +122,18 @@ export const auth = {
 		data = Objeto que contiene el header de la respuesta del servicio
 	*/
 	setAuthHeader(data) {
-		localStorage.setItem(header_names.access_token,data.map["access-token"][0]);
-		localStorage.setItem(header_names.token_type,data.map["token-type"][0]);
-		localStorage.setItem(header_names.client,data.map["client"][0]);
-		localStorage.setItem(header_names.expiry,data.map["expiry"][0]);
-		localStorage.setItem(header_names.uid,data.map["uid"][0]);
+		localStorage.setItem(header_names.access_token, data.map["access-token"][0]);
+		localStorage.setItem(header_names.token_type, data.map["token-type"][0]);
+		localStorage.setItem(header_names.client, data.map["client"][0]);
+		localStorage.setItem(header_names.expiry, data.map["expiry"][0]);
+		localStorage.setItem(header_names.uid, data.map["uid"][0]);
 	},
 	/*
 		json = Json que contiene la información de usuario
 	*/
 	setUserInformation(json) {
-		localStorage.setItem(user_names.name ,json.data.name);
-		localStorage.setItem(user_names.email,json.data.email);
+		localStorage.setItem(user_names.name , json.data.name);
+		localStorage.setItem(user_names.email, json.data.email);
 	},
 	/*
 		context = El conexto del componente
