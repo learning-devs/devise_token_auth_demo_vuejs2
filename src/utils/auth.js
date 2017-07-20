@@ -18,7 +18,7 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			Alert.openDialog('dialog', context, 'Ups...', response.body.errors[0]);
+			util.custom_alert.openDialog('dialog', context, 'Error', response.body.errors[0]);
 		})
 		.then(response => {
 			if (response) {
@@ -71,7 +71,8 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			alert("Error, verifique los datos");
+			debugger;
+			util.custom_alert.openDialog('dialog', context, 'Error',response.body.errors.full_messages);
 		})
 		.then(response => {
 			if (response){

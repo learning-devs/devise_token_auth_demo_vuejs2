@@ -11,15 +11,25 @@
 
 		<router-view></router-view>
 
+		<md-dialog-alert
+		  :md-title="alert.title"
+		  :md-content-html="alert.content"
+		  ref="dialog">
+		</md-dialog-alert>
+
 	</div>
 </template>
 
 <script>
 	import Navegation from './components/style/navegation.vue'
-	import Alert from './utils/alert'
+	import { util } from './utils/util.js'
 	export default {
 		components: {
 			navegation: Navegation
+		},data() {
+			return {
+				alert: util.custom_alert.alert
+			}
 		}
 	}
 </script>

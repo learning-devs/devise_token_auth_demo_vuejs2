@@ -27,29 +27,19 @@
 			</md-card-content>
 
 		</md-card>
-
-		<md-dialog-alert
-		  :md-title="alert.title"
-		  :md-content-html="alert.content"
-		  ref="dialog">
-		</md-dialog-alert>
-
 	</div>
 </template>
 
 
 <script>
 	import { auth } from './../utils/auth.js'
-	import Alert from './../utils/alert'
-	
 	export default {
 		data() {
 			return {
 				user: {
 					email: '',
 					password: ''
-				},
-				alert: Alert.alert
+				}
 			}
 		},
 		methods: {
