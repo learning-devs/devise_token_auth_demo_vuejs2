@@ -83,7 +83,7 @@ export const auth = {
 	*/
 	logout(context, redirect) {
 		var header = this.getAuthHeader();
-		context.$http.delete(endpoints.auth.base, {
+		context.$http.delete(endpoints.auth.sign_out, {
 			headers: {
 				uid: header.uid,
 				client: header.client,
