@@ -1,6 +1,7 @@
 import { endpoints } from './../endpoints.js'
 import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
+import { util } from './util.js'
 
 
 export const auth = {
@@ -17,24 +18,21 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			console.log(response);
 			alert("Error, verifique los datos");
 		})
 		.then(response => {
-
 			if (response) {
 				this.setAuthHeader(response);
-				this.tokenValid(context)
-				if (this.user.authenticated && redirect) {
-					context.$router.push({ name: redirect });
-				}
+				this.tokenValid(context,redirect);
 			}
 		});
 	},
 	/*
 		context = El conexto del componente
+		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
+		redirect_error = La ruta que redireccionara en caso que el servicio responda con error
 	*/
-	tokenValid(context) {
+	tokenValid(context,redirect,redirect_error) {
 		var header = this.getAuthHeader();
 		context.$http.get(endpoints.auth.validate_token, {
 			headers: {
@@ -46,13 +44,20 @@ export const auth = {
 		.then(response => {
 			return response.json();
 		}, response => {
+			return response.json();
 		})
 		.then(response => {
 			if (response && response.success) {
 				this.setUserInformation(response);
 				this.user.authenticated = true;
+				if (redirect) {
+					util.redirect(context,redirect);
+				}
 			}else{
 				this.user.authenticated = false;
+				if (redirect_error) {
+					util.redirect(context,redirect_error);
+				}
 			}
 		});
 	},
@@ -71,9 +76,7 @@ export const auth = {
 		.then(response => {
 			if (response){
 				this.setAuthHeader(response);
-				if (this.tokenValid && redirect){
-					context.$router.push({ name: redirect });
-				}
+				this.tokenValid(context,redirect);
 			}
 		});
 	},
@@ -99,7 +102,7 @@ export const auth = {
 				this.clearUserInformation();
 				this.user.authenticated = false;
 				if (redirect) {
-					context.$router.push({ name: redirect });
+					util.redirect(context,redirect);
 				}
 			}
 		})
@@ -153,6 +156,6 @@ export const auth = {
 	},
 	clearUserInformation() {
 		localStorage.removeItem(user_names.name);
-		localStorage.removeItem(user_names.user_email);
+		localStorage.removeItem(user_names.email);
 	}
 }

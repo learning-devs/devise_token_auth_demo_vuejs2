@@ -72,7 +72,7 @@
 </template>
 
 <script>
-	import { auth } from './../utils/products.js'
+	import { auth } from './../utils/auth.js'
 	export default {
 		data() {
 			return {
@@ -91,6 +91,7 @@
 		},
 		created() {
 			//Consultar la lista de producticos
+			auth.tokenValid(this,null,'login');
 		}
 	}
 </script>

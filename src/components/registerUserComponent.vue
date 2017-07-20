@@ -65,6 +65,9 @@
 			register() {
 				auth.signup(this, this.user, 'products');
 			}
+		},
+		created() {
+			auth.tokenValid(this,'products');
 		}
 	}
 </script>
