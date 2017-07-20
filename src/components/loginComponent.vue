@@ -44,11 +44,11 @@
 		},
 		methods: {
 			login() {
-				auth.login(this,this.user,'products');
+				auth.login(this, this.user, 'products');
 			}
 		},
 		created() {
-			if(auth.tokenValid(this)){
+			if(auth.tokenValid(this)) {
 				this.$router.push({ name: 'products' });
 			}
 		}

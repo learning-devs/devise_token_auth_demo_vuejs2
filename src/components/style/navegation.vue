@@ -28,7 +28,6 @@
 		methods: {
 			setUser() {
 				this.user = auth.getUserInformation(this);
-				console.log(this.user)
 			},
 			logout(){
 				auth.logout(this,'login');

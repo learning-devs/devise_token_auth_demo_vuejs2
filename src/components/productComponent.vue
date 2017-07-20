@@ -89,7 +89,7 @@
 				// Para registrar el productico
 			}
 		},
-		created(){
+		created() {
 			//Consultar la lista de producticos
 		}
 	}
