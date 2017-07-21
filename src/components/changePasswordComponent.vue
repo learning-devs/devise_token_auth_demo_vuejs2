@@ -57,8 +57,7 @@
 					password: '',
 					password_confirmation: ''
 				},
-				loading: false,
-				changed: true
+				loading: false
 			}
 		},
 		methods: {
@@ -68,6 +67,10 @@
 				setTimeout(function(){	
 					auth.changePassword(context,context.user,context.$parent)
 					context.loading = false;
+
+					context.password = '';
+					context.password_confirmation = '';
+					context.current_password = '';
 				}, 2000);		
 			}
 		}

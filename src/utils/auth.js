@@ -110,8 +110,28 @@ export const auth = {
 		})
 
 	},
-	changePasswordFromEmail(){
-
+	/*
+		parent_context = El contexto donde se mostrada la alerta en caso de error
+		context = El conexto del componente
+		creds = La data que se enviara al servicio
+	*/
+	changePasswordFromEmail(context, creds,parent_context){
+		context.$http.GET(endpoints.auth.password_edit_from_email,creds)
+		.then(response => {
+			return response.json();
+		},response => {
+			if (response.body.errors[0]) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors[0]);
+			}else{
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors.full_messages[0]);
+			}
+			
+		})
+		.then(response => {
+			if (response) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha cambiado la contraseña correctamente');
+			}
+		});
 	},
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
@@ -143,8 +163,28 @@ export const auth = {
 			}
 		});
 	},
-	recoverPassword(){
-
+	/*
+		parent_context = El contexto donde se mostrada la alerta en caso de error
+		context = El conexto del componente
+		creds = La data que se enviara al servicio
+	*/
+	recoverPassword(context,creds,parent_context){
+		context.$http.post(endpoints.auth.password,creds)
+		.then(response => {
+			return response.json();
+		},response => {
+			if (response.body.errors[0]) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors[0]);
+			}else{
+				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors.full_messages[0]);
+			}
+			
+		})
+		.then(response => {
+			if (response) {
+				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha enviado un correo para actualizar la contraseña.');
+			}
+		});
 	},
 	getAuthHeader() {
 		var header = {
