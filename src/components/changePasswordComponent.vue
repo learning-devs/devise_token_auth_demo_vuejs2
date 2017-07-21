@@ -81,12 +81,4 @@
 .md-card.md-theme-default.md-with-hover {
 	height: 355px;
 }
-.if-div {
-	display: flex;
-	height: 100%;
-	align-items: center;
-}
-.md-spinner {
-	margin: 0 auto;
-}
 </style>

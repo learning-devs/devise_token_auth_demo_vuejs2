@@ -57,4 +57,12 @@
 	.md-toolbar .md-title {
     font-weight: 500;
 	}
+	.if-div {
+		display: flex;
+		height: 100%;
+		align-items: center;
+	}
+	.md-spinner {
+		margin: 0 auto;
+	}
 </style>
