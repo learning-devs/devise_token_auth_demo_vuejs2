@@ -117,7 +117,6 @@ export const auth = {
 		})
 
 	},
-<<<<<<< HEAD
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
@@ -140,13 +139,7 @@ export const auth = {
 				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha cambiado la contraseña correctamente');
 			}
 		});
-=======
-
-	changePasswordFromEmail(){
-
->>>>>>> 2167455cb7f1e14e191b62a0f5d046221b3cb032
 	},
-
 
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
