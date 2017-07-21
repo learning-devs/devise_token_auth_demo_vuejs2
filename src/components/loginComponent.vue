@@ -22,6 +22,7 @@
 					</md-input-container>
 
 					<md-button type="submit" class="md-raised md-accent" md-theme="blue">Iniciar Sesión</md-button>
+					<router-link tag="md-button" v-bind:to="{ name:'recoverPassword' }">¿Olvidaste tu contraseña?</router-link>
 
 				</form>
 			</md-card-content>

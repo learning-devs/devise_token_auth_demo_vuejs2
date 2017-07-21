@@ -12,8 +12,9 @@ export const util = {
 			title: 'Ups...',
 			content: 'Algo salió mal.'
 		},
+
 		/*
-			ref = 
+			ref =
 			title = Titulo de la alerta
 			msg = Mensaje alerta
 			context = El conexto del componente
@@ -23,6 +24,7 @@ export const util = {
 			this.alert.content = content
 			context.$refs[ref].open();
 		},
+
 		/*
 			ref =
 		*/

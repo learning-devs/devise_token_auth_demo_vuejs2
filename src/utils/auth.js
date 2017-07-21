@@ -7,13 +7,14 @@ export const auth = {
 	user: {
 		authenticated: false
 	},
+
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 	*/
-	login(context, creds, redirect,parent_context) {
+	login(context, creds, redirect, parent_context) {
 		context.$http.post(endpoints.auth.sign_in, creds)
 		.then(response => {
 			return response.headers;
@@ -27,6 +28,8 @@ export const auth = {
 			}
 		});
 	},
+
+
 	/*
 		context = El conexto del componente
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
@@ -61,13 +64,15 @@ export const auth = {
 			}
 		});
 	},
+
+
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
 	*/
-	signup(context, creds, redirect,parent_context) {
+	signup(context, creds, redirect, parent_context) {
 		context.$http.post(endpoints.auth.base, creds)
 		.then(response => {
 			return response.headers;
@@ -82,6 +87,8 @@ export const auth = {
 			}
 		});
 	},
+
+
 	/*
 		context = El conexto del componente
 		redirect = La ruta que redireccionara en caso que el servicio responda correctamente
@@ -110,6 +117,7 @@ export const auth = {
 		})
 
 	},
+<<<<<<< HEAD
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
@@ -132,15 +140,22 @@ export const auth = {
 				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha cambiado la contraseña correctamente');
 			}
 		});
+=======
+
+	changePasswordFromEmail(){
+
+>>>>>>> 2167455cb7f1e14e191b62a0f5d046221b3cb032
 	},
+
+
 	/*
 		parent_context = El contexto donde se mostrada la alerta en caso de error
 		context = El conexto del componente
 		creds = La data que se enviara al servicio
 	*/
-	changePassword(context, creds,parent_context){
+	changePassword(context, creds, parent_context){
 		var header = this.getAuthHeader();
-		context.$http.put(endpoints.auth.password,creds, {
+		context.$http.put(endpoints.auth.password, creds, {
 			headers: {
 				uid: header.uid,
 				client: header.client,
@@ -151,15 +166,15 @@ export const auth = {
 			return response.json();
 		},response => {
 			if (response.body.errors[0]) {
-				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors[0]);
+				util.custom_alert.openDialog('dialog', parent_context, 'Error', response.body.errors[0]);
 			}else{
-				util.custom_alert.openDialog('dialog', parent_context, 'Error',response.body.errors.full_messages[0]);
+				util.custom_alert.openDialog('dialog', parent_context, 'Error', response.body.errors.full_messages[0]);
 			}
-			
+
 		})
 		.then(response => {
 			if (response) {
-				util.custom_alert.openDialog('dialog', parent_context, 'Correcto','Se ha cambiado la contraseña correctamente');
+				util.custom_alert.openDialog('dialog', parent_context, 'Correcto', 'Se ha cambiado la contraseña correctamente');
 			}
 		});
 	},
@@ -196,6 +211,8 @@ export const auth = {
 		}
 		return header
 	},
+
+
 	/*
 		data = Objeto que contiene el header de la respuesta del servicio
 	*/
@@ -206,6 +223,8 @@ export const auth = {
 		localStorage.setItem(header_names.expiry, data.map["expiry"][0]);
 		localStorage.setItem(header_names.uid, data.map["uid"][0]);
 	},
+
+
 	/*
 		json = Json que contiene la información de usuario
 	*/
@@ -213,6 +232,8 @@ export const auth = {
 		localStorage.setItem(user_names.name , json.data.name);
 		localStorage.setItem(user_names.email, json.data.email);
 	},
+
+
 	/*
 		context = El conexto del componente
 	*/
