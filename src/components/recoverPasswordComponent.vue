@@ -35,7 +35,7 @@
 			return {
 				user: {
 					email: '',
-					redirect_url: 'http://localhost:8080/recover-password'
+					redirect_url: 'http://localhost:8080/change-password-from-email'
 				},
 				loading: false
 			}

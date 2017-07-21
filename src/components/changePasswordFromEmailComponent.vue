@@ -7,7 +7,7 @@
 		<div v-else>
 			<md-card md-with-hover>
 				<md-card-header>
-					<div class="md-display-1">Registro</div>
+					<div class="md-display-1">Nueva contraseña</div>
 				</md-card-header>
 
 				<md-card-content>
