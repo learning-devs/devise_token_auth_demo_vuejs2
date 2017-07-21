@@ -1,18 +1,18 @@
 <template>
 	<div class="container">
-		<div v-if="loading">
-			<md-spinner :md-size="60" md-indeterminate class="md-accent">
-			</md-spinner>
-		</div>
-		<div v-else>
-			<md-card md-with-hover>
+		<md-card md-with-hover>
+
+			<div class="if-div" v-if="loading">
+				<md-spinner :md-size="60" md-indeterminate class="md-accent"></md-spinner>
+			</div>
+			<div v-else>
 				<md-card-header>
-					<div class="md-display-1">Registro</div>
+					<div class="md-display-1">Cambiar Contraseña</div>
 				</md-card-header>
 
 				<md-card-content>
 
-					<form v-on:submit.prevent="change" >
+					<form v-on:submit.prevent="change">
 						<md-layout md-gutter>
 
 							<md-layout md-column md-gutter class="right-padding">
@@ -37,12 +37,12 @@
 
 						</md-layout>
 
-						<md-button type="submit" class="md-raised md-accent" md-theme="blue">Cammbiar</md-button>
+						<md-button type="submit" class="md-raised md-accent" md-theme="blue">Cambiar</md-button>
 
 					</form>
 				</md-card-content>
-			</md-card>
-		</div>
+			</div>
+		</md-card>
 	</div>
 </template>
 
@@ -65,12 +65,26 @@
 			change() {
 				this.loading = true;
 				const context = this;
-				setTimeout(function(){	
+				setTimeout(function(){
 					auth.changePassword(context,context.user,context.$parent)
 					context.loading = false;
-				}, 2000);		
+				}, 2000);
 			}
 		}
 
 	}
 </script>
+
+<style scoped>
+.md-card.md-theme-default.md-with-hover {
+	height: 355px;
+}
+.if-div {
+	display: flex;
+	height: 100%;
+	align-items: center;
+}
+.md-spinner {
+	margin: 0 auto;
+}
+</style>

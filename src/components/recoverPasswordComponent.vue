@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<md-card md-with-hover>
-			
+
 			<md-card-header>
 				<div class="md-display-1">Recuperar Contraseña</div>
 			</md-card-header>

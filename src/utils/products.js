@@ -4,6 +4,7 @@ import { user_names } from './../localStorageVariables.js'
 
 
 export default {
+	
 	/*
 		context = El conexto del componente
 		creds = La data que se enviara al servicio

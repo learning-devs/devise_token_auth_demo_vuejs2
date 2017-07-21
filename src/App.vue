@@ -1,13 +1,13 @@
 <template>
 	<div id="app">
 
-		<md-toolbar md-theme="blue">
+		<md-whiteframe md-tag="md-toolbar" md-elevation="2" md-theme="black" class="md-primary">
 			<md-button class="md-icon-button">
-			<md-icon>menu</md-icon>
+				<md-icon>home</md-icon>
 			</md-button>
 			<h2 class="md-title" style="flex: 1">Demo API</h2>
 			<navegation></navegation>
-		</md-toolbar>
+		</md-whiteframe>
 
 		<router-view></router-view>
 
@@ -53,5 +53,8 @@
 	}
 	.md-table .md-table-cell .md-button:last-child {
     margin: 6px 0px 6px 8px;
+	}
+	.md-toolbar .md-title {
+    font-weight: 500;
 	}
 </style>
