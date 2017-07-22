@@ -9,25 +9,28 @@
 			<md-card-content>
 				<form v-on:submit.prevent="register">
 
-					<md-input-container>
+					<md-input-container :class="{'md-input-invalid' : errors.name }">
 						<md-icon>subject</md-icon>
 						<label>Nombre</label>
 						<md-input type="text" v-model="product.name"></md-input>
+						<span class="md-error" v-if="errors.name">{{ errors.name[0] }}</span>
 					</md-input-container>
 
-					<md-input-container>
+					<md-input-container :class="{'md-input-invalid' : errors.description }">
 						<md-icon>description</md-icon>
 						<label>Descripción</label>
 						<md-input type="text" v-model="product.description"></md-input>
+						<span class="md-error" v-if="errors.description">{{ errors.description[0] }}</span>
 					</md-input-container>
 
-					<md-input-container>
+					<md-input-container :class="{'md-input-invalid' : errors.price }">
 						<md-icon>attach_money</md-icon>
 						<label>Precio</label>
 						<md-input type="text" v-model="product.price"></md-input>
+						<span class="md-error" v-if="errors.price">{{ errors.price[0] }}</span>
 					</md-input-container>
 
-					<md-button class="md-raised md-accent" md-theme="blue">Registrar</md-button>
+					<md-button type="submit" class="md-raised md-accent" md-theme="blue">Registrar</md-button>
 
 				</form>
 			</md-card-content>
@@ -73,6 +76,7 @@
 </template>
 
 <script>
+	import Vue from 'vue'
 	import { auth } from './../utils/auth.js'
 	import { endpoints } from './../endpoints.js'
 
@@ -85,12 +89,29 @@
 					price: '',
 					user: ''
 				},
-				products: []
+				products: [],
+        errors: {}
 			}
 		},
 		methods: {
 			register() {
-				// Para registrar el productico
+				var header = auth.getAuthHeader();
+				this.$http.post(endpoints.products.base, this.product, {
+					headers: {
+						uid: header.uid,
+						expiry: header.expiry,
+						client: header.client,
+						'token-type': header.token_type,
+						'access-token': header.access_token,
+					}
+				})
+				.then(response => {
+					this.products.push(response.body.product)
+				}, response => {
+					if(response.body.errors) {
+						Vue.set(this.$data, 'errors', response.body.errors)
+					}
+				})
 			},
 			moneyFormat(n){
 				return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
