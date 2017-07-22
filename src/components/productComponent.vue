@@ -37,7 +37,7 @@
 		<!-- Tabla de productos -->
 		<md-card md-with-hover>
 			<md-card-content>
-				<md-table v-once>
+				<md-table>
 				  <md-table-header>
 				    <md-table-row>
 				      <md-table-head>Nombre</md-table-head>
@@ -49,9 +49,11 @@
 				  </md-table-header>
 
 				  <md-table-body>
-				    <md-table-row v-for="(row, index) in 4" :key="index">
-				      <md-table-cell>Producto {{index + 1}}</md-table-cell>
-				      <md-table-cell v-for="(col, index) in 3" :key="index">Lorem ipsum</md-table-cell>
+				    <md-table-row v-for="product in products" :key="product.id">
+				      <md-table-cell>{{ product.name }}</md-table-cell>
+				      <md-table-cell>{{ product.description }}</md-table-cell>
+							<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
+							<md-table-cell>{{ product.user }}</md-table-cell>
 							<md-table-cell>
 								<div>
 									<md-button class="md-fab md-mini md-primary" md-theme="blue">
@@ -67,32 +69,56 @@
 				</md-table>
 			</md-card-content>
 		</md-card>
-
 	</div>
 </template>
 
 <script>
 	import { auth } from './../utils/auth.js'
+	import { endpoints } from './../endpoints.js'
+
 	export default {
 		data() {
 			return {
 				product: {
 					name: '',
 					description: '',
-					price: ''
+					price: '',
+					user: ''
 				},
-				products: {}
+				products: []
 			}
 		},
 		methods: {
 			register() {
 				// Para registrar el productico
+			},
+			moneyFormat(n){
+				return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 			}
 		},
 		created() {
-			//Consultar la lista de producticos
 			auth.tokenValid(this, null, 'login');
-		}
+
+			var header = auth.getAuthHeader();
+			this.$http.get(endpoints.products.base, {
+				headers: {
+					uid: header.uid,
+					expiry: header.expiry,
+					client: header.client,
+					'token-type': header.token_type,
+					'access-token': header.access_token,
+				}
+			})
+			.then(response => {
+				return response.body;
+			}, response => {
+				return response.json();
+			})
+			.then(response => {
+				this.products = response.products;
+			});
+		},
+
 	}
 </script>
 

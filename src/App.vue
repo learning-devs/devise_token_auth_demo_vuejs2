@@ -26,7 +26,8 @@
 	export default {
 		components: {
 			navegation: Navegation
-		},data() {
+		},
+		data() {
 			return {
 				alert: util.custom_alert.alert
 			}
