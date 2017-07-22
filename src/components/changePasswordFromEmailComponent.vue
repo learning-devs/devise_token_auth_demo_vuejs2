@@ -1,11 +1,13 @@
 <template>
 	<div class="container">
-		<div v-if="loading">
-			<md-spinner :md-size="60" md-indeterminate class="md-accent">
-			</md-spinner>
-		</div>
-		<div v-else>
-			<md-card md-with-hover>
+		<md-card md-with-hover>
+
+			<div class="if-div" v-if="loading">
+				<md-spinner :md-size="60" md-indeterminate class="md-accent">
+				</md-spinner>
+			</div>
+			<div v-else>
+
 				<md-card-header>
 					<div class="md-display-1">Nueva contraseña</div>
 				</md-card-header>
@@ -32,12 +34,12 @@
 
 						</md-layout>
 
-						<md-button type="submit" class="md-raised md-accent" md-theme="blue">Cammbiar</md-button>
+						<md-button type="submit" class="md-raised md-accent" md-theme="blue">Cambiar</md-button>
 
 					</form>
 				</md-card-content>
-			</md-card>
-		</div>
+			</div>
+		</md-card>
 	</div>
 </template>
 
@@ -51,6 +53,12 @@
 					password: '',
 					password_confirmation: ''
 				},
+				headers: {
+					client: this.$route.query.client_id,
+					reset_password: true,
+					access_token: this.$route.query.token,
+					uid: this.$route.query.uid
+				},
 				loading: false
 			}
 		},
@@ -58,15 +66,20 @@
 			change() {
 				this.loading = true;
 				const context = this;
-				setTimeout(function(){	
-					auth.changePassword(context,context.user,context.$parent)
+				setTimeout(function() {
+					auth.changePasswordFromEmail(context, context.user, context.$parent, context.headers)
 					context.loading = false;
-					
 					context.password = '';
 					context.password_confirmation = '';
-				}, 2000);		
+				}, 2000);
 			}
 		}
 
 	}
 </script>
+
+<style scoped>
+	.md-card.md-theme-default.md-with-hover {
+		height: 279px;
+	}
+</style>

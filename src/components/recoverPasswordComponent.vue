@@ -47,7 +47,7 @@
 				auth.recoverPassword(context, context.user, context.$parent)
 				setTimeout(function(){
 					context.loading = false;
-				}, 4000);
+				}, 2000);
 			}
 		}
 	}
