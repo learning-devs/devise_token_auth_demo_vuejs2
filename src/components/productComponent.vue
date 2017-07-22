@@ -56,10 +56,10 @@
 							<md-table-cell>{{ product.user }}</md-table-cell>
 							<md-table-cell>
 								<div>
-									<md-button class="md-fab md-mini md-primary" md-theme="blue">
+									<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="edit(product.id)">
 										<md-icon>mode_edit</md-icon>
 									</md-button>
-									<md-button class="md-fab md-mini md-warn" md-theme="blue">
+									<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="delete(product.id)">
 										<md-icon>delete</md-icon>
 									</md-button>
 								</div>
@@ -80,6 +80,7 @@
 		data() {
 			return {
 				product: {
+					id: '',
 					name: '',
 					description: '',
 					price: '',
@@ -94,6 +95,12 @@
 			},
 			moneyFormat(n){
 				return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+			},
+			edit(id){
+				
+			},
+			delete(id){
+
 			}
 		},
 		created() {

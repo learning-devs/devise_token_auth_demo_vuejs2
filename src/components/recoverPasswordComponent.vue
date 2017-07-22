@@ -44,11 +44,14 @@
 			recover() {
 				this.loading = true;
 				const context = this;
-				auth.recoverPassword(context, context.user, context.$parent)
+				auth.recoverPassword(this, this.user, this.$parent);
 				setTimeout(function(){
 					context.loading = false;
 				}, 2000);
 			}
+		},
+		created() {
+			auth.tokenValid(this, 'products');
 		}
 	}
 </script>

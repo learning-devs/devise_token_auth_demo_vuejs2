@@ -15,5 +15,20 @@ export default {
 	},
 	getProduct(context,id) {
 
+	},
+	/*
+		context = El conexto del componente
+		creds = La data que se enviara al servicio
+		id = El id del producto a editar
+	 */
+	edit(context,creds,id){
+
+	},
+	/*
+		context = El conexto del componente
+		id = El id del producto a eliminar
+	 */
+	delete(context,id){
+
 	}
 }
