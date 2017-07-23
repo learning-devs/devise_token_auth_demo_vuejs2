@@ -46,6 +46,17 @@
 		<md-card md-with-hover>
 			<md-card-content>
 				<md-table-card>
+					
+					<!--Encabezado-->
+					<md-input-container class="md-title">
+						<md-icon>search</md-icon>
+						<label>Buscar por nombre o descripción</label>
+						<md-input
+							v-model="product_search" 
+							v-on:keyup.native="search">							
+						</md-input>
+					</md-input-container>
+
 					<md-table>
 						<md-table-header>
 							<md-table-row>
@@ -75,11 +86,9 @@
 									</md-table-cell>
 							</md-table-row>
 						</md-table-body>
-
-						<!--Paginacion-->
-
-
 					</md-table>
+
+					<!--Paginacion-->
 					<md-table-pagination
 						v-bind:md-total = "meta.total_count"
 						v-bind:md-page = "meta.current_page"
@@ -124,7 +133,8 @@
 					prev_page: null,
 					total_pages: 1,
 					total_count: 0
-				}
+				},
+				product_search: ''
 			}
 		},
 		methods: {
@@ -177,6 +187,10 @@
 			/*se ejecuta cuando se cambia de pagina*/
 			page(evt){
 
+			},
+			search(){
+				console.log("pres");
+				product.search(this, 'login',this.table.page,this.table.per_page,this.product_search);
 			}
 		},
 		created() {

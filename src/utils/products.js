@@ -144,5 +144,40 @@ export const product =  {
 				util.custom_alert.openDialog('dialog', parent_context, 'Error', response.body.errors.full_messages[0]);
 			}
 		});
+	},
+	/*
+		context = El conexto del componente
+		redirect = La ruta que redireccionara en caso que no este logueado
+		page = Pagina que se esta listando
+		size = Numero de registros a mostrar
+		filter= La palabra de busqueda
+	 */
+	search(context,redirect,page,size,filter){
+		var header = auth.getAuthHeader();
+
+		context.$http.get(endpoints.products.search, {
+			params:  {
+				page: page,
+				size: size,
+				filter: filter
+			},
+			headers: {
+				uid: header.uid,
+				expiry: header.expiry,
+				client: header.client,
+				'token-type': header.token_type,
+				'access-token': header.access_token,
+			}
+		})
+		.then(response => {
+			return response.body;
+		}, response => {
+			//error callback
+			return response.json();
+		})
+		.then(response => {
+			context.llenarProductos(response.products);
+			context.llenarMeta(response.meta);
+		});
 	}
 }

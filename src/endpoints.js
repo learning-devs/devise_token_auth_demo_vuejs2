@@ -8,6 +8,7 @@ export const endpoints = {
 		password_edit_from_email: 'auth/password/edit'
 	},
 	products: {
-		base: 'products'
+		base: 'products',
+		search: 'products/search'
 	}
 }
