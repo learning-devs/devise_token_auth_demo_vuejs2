@@ -36,9 +36,12 @@
 </script>
 
 <style>
+	body {
+		background: #ECEFF1;
+	}
 	.container {
 		width: 70%;
-		margin: 50px auto;
+		margin: 30px auto;
 	}
 	.left-padding {
 		padding-left: 10px;
