@@ -45,52 +45,53 @@
 		<!-- Tabla de productos -->
 		<md-card md-with-hover>
 			<md-card-content>
-				<md-table>
-					<md-table-header>
-						<md-table-row>
-							<md-table-head>Nombre</md-table-head>
-							<md-table-head>Descripción</md-table-head>
-							<md-table-head>Precio</md-table-head>
-							<md-table-head>Usuario</md-table-head>
-							<md-table-head>Acciones</md-table-head>
-						</md-table-row>
-					</md-table-header>
+				<md-table-card>
+					<md-table>
+						<md-table-header>
+							<md-table-row>
+								<md-table-head>Nombre</md-table-head>
+								<md-table-head>Descripción</md-table-head>
+								<md-table-head>Precio</md-table-head>
+								<md-table-head>Usuario</md-table-head>
+								<md-table-head>Acciones</md-table-head>
+							</md-table-row>
+						</md-table-header>
 
-					<md-table-body>
-						<md-table-row v-for="(product, indice) in products" :key="product.id">
-							<md-table-cell>{{ product.name }}</md-table-cell>
-							<md-table-cell>{{ product.description }}</md-table-cell>
-								<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
-								<md-table-cell>{{ product.user }}</md-table-cell>
-								<md-table-cell>
-									<div>
-										<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="setProductForm(indice)">
-											<md-icon>mode_edit</md-icon>
-										</md-button>
-										<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id, indice)">
-											<md-icon>delete</md-icon>
-										</md-button>
-									</div>
-								</md-table-cell>
-						</md-table-row>
-					</md-table-body>
+						<md-table-body>
+							<md-table-row v-for="(product, indice) in products" :key="product.id">
+								<md-table-cell>{{ product.name }}</md-table-cell>
+								<md-table-cell>{{ product.description }}</md-table-cell>
+									<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
+									<md-table-cell>{{ product.user }}</md-table-cell>
+									<md-table-cell>
+										<div>
+											<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="setProductForm(indice)">
+												<md-icon>mode_edit</md-icon>
+											</md-button>
+											<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id, indice)">
+												<md-icon>delete</md-icon>
+											</md-button>
+										</div>
+									</md-table-cell>
+							</md-table-row>
+						</md-table-body>
 
-					<!--Paginacion-->
-					
+						<!--Paginacion-->
 
-				</md-table>
-				<md-table-pagination 
-					v-bind:md-total = "meta.total_count" 
-					v-bind:md-page = "meta.current_page"
-					v-bind:md-size = "table.per_page"
-					v-bind:md-page-options = "[table.per_page,table.per_page * 2 ,table.per_page * 4]"
-					md-label = "Registros por pagina"
-					md-separator = "de"
-					v-on:pagination = "pagination"
-					v-on:size = "size"
-					v-on:page = "page">
-					
+
+					</md-table>
+					<md-table-pagination
+						v-bind:md-total = "meta.total_count"
+						v-bind:md-page = "meta.current_page"
+						v-bind:md-size = "table.per_page"
+						v-bind:md-page-options = "[table.per_page,table.per_page * 2 ,table.per_page * 4]"
+						md-label = "Registros por pagina"
+						md-separator = "de"
+						v-on:pagination = "pagination"
+						v-on:size = "size"
+						v-on:page = "page">
 					</md-table-pagination>
+				</md-table-card>
 			</md-card-content>
 		</md-card>
 	</div>
@@ -131,7 +132,7 @@
 				product.register(this, this.products);
 			},
 			moneyFormat(n){
-				return util.moneyFormat(n);			
+				return util.moneyFormat(n);
 			},
 			setProductForm(indice){
 				this.edit = true;
@@ -166,7 +167,7 @@
 			/*se ejecuta cuando se cambia el numero de registros
 			por pagina*/
 			size(){
-				
+
 			},
 			/*se ejecuta despues de cambiar de pagina o el numero
 			de registos por pagina*/
@@ -175,7 +176,7 @@
 			},
 			/*se ejecuta cuando se cambia de pagina*/
 			page(evt){
-				
+
 			}
 		},
 		created() {
