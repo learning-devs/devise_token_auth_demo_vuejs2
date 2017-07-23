@@ -1,17 +1,16 @@
+	import Vue from 'vue'
 import { endpoints } from './../endpoints.js'
-import { header_names } from './../localStorageVariables.js'
-import { user_names } from './../localStorageVariables.js'
 import { util } from './util.js'
 import { auth } from './auth.js'
 
 
 export const product =  {
-	
+
 	/*
 		context = El conexto del componente
 		redirect = La ruta que redireccionara en caso que no este logueado
 	 */
-	getList(context,redirect) {
+	getList(context, redirect) {
 		auth.tokenValid(context, null, redirect);
 		var header = auth.getAuthHeader();
 
@@ -34,7 +33,8 @@ export const product =  {
 			context.llenarProductos(response.products);
 		});
 	},
-	getProduct(context,id) {
+
+	getProduct(context, id) {
 		const header = auth.getAuthHeader();
 		const url = endpoints.products.base + '/' + id;
 
@@ -48,16 +48,17 @@ export const product =  {
 			}
 		})
 		.then(response => {
-			
+
 		}, response => {
 			//error callback
 		});
 	},
+
 	/*
 		context = El conexto del componente
 		arr = El array donde se almacena los productos que devuelva el server
-	 */
-	register(context,arr){
+	*/
+	register(context, arr){
 		var header = auth.getAuthHeader();
 		context.$http.post(endpoints.products.base, context.product, {
 			headers: {
@@ -84,7 +85,7 @@ export const product =  {
 		id = El id del producto a editar
 		parent_context = El contexto donde se mostrada el mensaje con la respuesta del servidor
 	 */
-	edit(context,creds,id,parent_context){
+	edit(context, creds, id, parent_context){
 		const header = auth.getAuthHeader();
 		const url = endpoints.products.base + '/' + id;
 		context.$http.put(url, creds, {
@@ -112,7 +113,7 @@ export const product =  {
 		indice = Posicion del producto en el array
 		parent_context = El contexto donde se mostrada el mensaje con la respuesta del servidor
 	 */
-	delete(context,arr,id,indice,parent_context){
+	delete(context, arr, id, indice, parent_context){
 		const header = auth.getAuthHeader();
 		const url = endpoints.products.base + '/' + id;
 
@@ -127,7 +128,7 @@ export const product =  {
 		})
 		.then(response => {
 			util.custom_alert.openDialog('dialog', parent_context, 'Correcto', 'Se ha eliminado correctamente.');
-			arr.splice(indice,1);
+			arr.splice(indice, 1);
 		}, response => {
 			//error callback
 			if (response.body.errors[0]) {

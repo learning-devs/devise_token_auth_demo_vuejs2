@@ -29,15 +29,15 @@
 						<md-input type="text" v-model="product.price"></md-input>
 						<span class="md-error" v-if="errors.price">{{ errors.price[0] }}</span>
 					</md-input-container>
-					
+
 					<md-button v-if="!edit"class="md-raised md-accent" md-theme="blue" v-on:click.prevent="register">Registrar</md-button>
-					
+
 					<div v-else>
 						<md-button class="md-raised md-accent" md-theme="blue" v-on:click.prevent="update">Editar</md-button>
 
 						<md-button class="md-raised md-accent" md-theme="blue" v-on:click="cancelEdit">Cancelar</md-button>
 					</div>
-					
+
 
 				</form>
 			</md-card-content>
@@ -59,7 +59,7 @@
 				  </md-table-header>
 
 				  <md-table-body>
-				    <md-table-row v-for="(product,indice) in products" :key="product.id">
+				    <md-table-row v-for="(product, indice) in products" :key="product.id">
 				      <md-table-cell>{{ product.name }}</md-table-cell>
 				      <md-table-cell>{{ product.description }}</md-table-cell>
 							<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
@@ -69,7 +69,7 @@
 									<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="setProductForm(indice)">
 										<md-icon>mode_edit</md-icon>
 									</md-button>
-									<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id,indice)">
+									<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id, indice)">
 										<md-icon>delete</md-icon>
 									</md-button>
 								</div>
@@ -83,9 +83,6 @@
 </template>
 
 <script>
-	import Vue from 'vue'
-	import { auth } from './../utils/auth.js'
-	import { endpoints } from './../endpoints.js'
 	import { product } from './../utils/products.js'
 
 	export default {
@@ -107,23 +104,23 @@
 		},
 		methods: {
 			register() {
-				product.register(this,this.products);
+				product.register(this, this.products);
 			},
 			moneyFormat(n){
 				return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 			},
 			setProductForm(indice){
-				this.edit = true; 
+				this.edit = true;
 				this.product = this.products[indice];
 			},
 			cancelEdit(){
 				this.edit = false;
 			},
 			update(){
-				product.edit(this,this.product,this.product.id,this.$parent);
+				product.edit(this, this.product, this.product.id, this.$parent);
 			},
-			remove(id,indice){
-				product.delete(this,this.products,id,indice,this.$parent);
+			remove(id, indice){
+				product.delete(this, this.products, id, indice, this.$parent);
 			},
 			llenarProductos(arr){
 				this.products = arr;
@@ -137,7 +134,7 @@
 			}
 		},
 		created() {
-			product.getList(this,'login');
+			product.getList(this, 'login');
 		},
 
 	}
