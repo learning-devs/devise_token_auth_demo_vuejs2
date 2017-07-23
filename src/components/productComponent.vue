@@ -29,8 +29,15 @@
 						<md-input type="text" v-model="product.price"></md-input>
 						<span class="md-error" v-if="errors.price">{{ errors.price[0] }}</span>
 					</md-input-container>
+					
+					<md-button v-if="!edit"class="md-raised md-accent" md-theme="blue" v-on:click.prevent="register">Registrar</md-button>
+					
+					<div v-else>
+						<md-button class="md-raised md-accent" md-theme="blue" v-on:click.prevent="update">Editar</md-button>
 
-					<md-button type="submit" class="md-raised md-accent" md-theme="blue">Registrar</md-button>
+						<md-button class="md-raised md-accent" md-theme="blue" v-on:click="cancelEdit">Cancelar</md-button>
+					</div>
+					
 
 				</form>
 			</md-card-content>
@@ -52,17 +59,17 @@
 				  </md-table-header>
 
 				  <md-table-body>
-				    <md-table-row v-for="product in products" :key="product.id">
+				    <md-table-row v-for="(product,indice) in products" :key="product.id">
 				      <md-table-cell>{{ product.name }}</md-table-cell>
 				      <md-table-cell>{{ product.description }}</md-table-cell>
 							<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
 							<md-table-cell>{{ product.user }}</md-table-cell>
 							<md-table-cell>
 								<div>
-									<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="edit(product.id)">
+									<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="setProductForm(indice)">
 										<md-icon>mode_edit</md-icon>
 									</md-button>
-									<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="delete(product.id)">
+									<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id,indice)">
 										<md-icon>delete</md-icon>
 									</md-button>
 								</div>
@@ -79,6 +86,7 @@
 	import Vue from 'vue'
 	import { auth } from './../utils/auth.js'
 	import { endpoints } from './../endpoints.js'
+	import { product } from './../utils/products.js'
 
 	export default {
 		data() {
@@ -91,60 +99,45 @@
 					user: ''
 				},
 				products: [],
-        errors: {}
+				errors: {},
+				edit: false,
+				page: 1,
+				product_edit:{}
 			}
 		},
 		methods: {
 			register() {
-				var header = auth.getAuthHeader();
-				this.$http.post(endpoints.products.base, this.product, {
-					headers: {
-						uid: header.uid,
-						expiry: header.expiry,
-						client: header.client,
-						'token-type': header.token_type,
-						'access-token': header.access_token,
-					}
-				})
-				.then(response => {
-					this.products.push(response.body.product)
-				}, response => {
-					if(response.body.errors) {
-						Vue.set(this.$data, 'errors', response.body.errors)
-					}
-				})
+				product.register(this,this.products);
 			},
 			moneyFormat(n){
 				return parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 			},
-			edit(id){
-				
+			setProductForm(indice){
+				this.edit = true; 
+				this.product = this.products[indice];
 			},
-			delete(id){
-
+			cancelEdit(){
+				this.edit = false;
+			},
+			update(){
+				product.edit(this,this.product,this.product.id,this.$parent);
+			},
+			remove(id,indice){
+				product.delete(this,this.products,id,indice,this.$parent);
+			},
+			llenarProductos(arr){
+				this.products = arr;
+			},
+			cleanProduct(){
+				this.product.id = '';
+				this.product.name = '';
+				this.product.description= '';
+				this.product.price= '';
+				this.product.user= '';
 			}
 		},
 		created() {
-			auth.tokenValid(this, null, 'login');
-
-			var header = auth.getAuthHeader();
-			this.$http.get(endpoints.products.base, {
-				headers: {
-					uid: header.uid,
-					expiry: header.expiry,
-					client: header.client,
-					'token-type': header.token_type,
-					'access-token': header.access_token,
-				}
-			})
-			.then(response => {
-				return response.body;
-			}, response => {
-				return response.json();
-			})
-			.then(response => {
-				this.products = response.products;
-			});
+			product.getList(this,'login');
 		},
 
 	}

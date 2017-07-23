@@ -77,7 +77,6 @@ export const auth = {
 		.then(response => {
 			return response.headers;
 		},response => {
-			debugger;
 			util.custom_alert.openDialog('dialog', parent_context, 'Error', response.body.errors.full_messages);
 		})
 		.then(response => {
