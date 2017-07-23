@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div v-if="this.user.authenticated">
-			 <md-button>Hola, {{ this.user.name}}</md-button>
+			 <md-button>{{ this.user.name}}</md-button>
 			 <router-link tag="md-button" v-bind:to="{ name: 'changePassword' }" class="md-raised">Cambiar Contraseña</router-link>
 			 <md-button class="md-raised" v-on:click="logout">Cerrar sesion</md-button>
 		</div>
