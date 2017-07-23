@@ -9,12 +9,18 @@ export const product =  {
 	/*
 		context = El conexto del componente
 		redirect = La ruta que redireccionara en caso que no este logueado
+		page = Pagina que se esta listando
+		size = Numero de registros a mostrar
 	 */
-	getList(context, redirect) {
+	getList(context, redirect,page,size) {
 		auth.tokenValid(context, null, redirect);
 		var header = auth.getAuthHeader();
 
 		context.$http.get(endpoints.products.base, {
+			params:  {
+				page: page,
+				size: size
+			},
 			headers: {
 				uid: header.uid,
 				expiry: header.expiry,
@@ -31,6 +37,7 @@ export const product =  {
 		})
 		.then(response => {
 			context.llenarProductos(response.products);
+			context.llenarMeta(response.meta);
 		});
 	},
 

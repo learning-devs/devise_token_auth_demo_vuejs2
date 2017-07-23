@@ -6,7 +6,9 @@ export const util = {
 	redirect(context,redirect){
 		context.$router.push({ name: redirect });
 	},
-
+	moneyFormat(n){
+		return '$' + parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+	},
 	custom_alert:{
 		alert: {
 			title: 'Ups...',
