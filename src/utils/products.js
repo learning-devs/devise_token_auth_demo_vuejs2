@@ -7,7 +7,7 @@ import { auth } from './auth.js'
 export const product =  {
 
 	/*
-		context = El conexto del componente
+		context = El contexto del componente
 		redirect = La ruta que redireccionara en caso que no este logueado
 		page = Pagina que se esta listando
 		size = Numero de registros a mostrar
@@ -62,7 +62,7 @@ export const product =  {
 	},
 
 	/*
-		context = El conexto del componente
+		context = El contexto del componente
 		arr = El array donde se almacena los productos que devuelva el server
 	*/
 	register(context, arr){
@@ -87,7 +87,7 @@ export const product =  {
 		})
 	},
 	/*
-		context = El conexto del componente
+		context = El contexto del componente
 		creds = La data que se enviara al servicio
 		id = El id del producto a editar
 		parent_context = El contexto donde se mostrada el mensaje con la respuesta del servidor
@@ -114,7 +114,7 @@ export const product =  {
 		});
 	},
 	/*
-		context = El conexto del componente
+		context = El contexto del componente
 		id = El id del producto a eliminar
 		arr = Array que contiene los productos
 		indice = Posicion del producto en el array
@@ -146,13 +146,13 @@ export const product =  {
 		});
 	},
 	/*
-		context = El conexto del componente
+		context = El contexto del componente
 		redirect = La ruta que redireccionara en caso que no este logueado
 		page = Pagina que se esta listando
 		size = Numero de registros a mostrar
-		filter= La palabra de busqueda
+		filter = La palabra de busqueda
 	 */
-	search(context,redirect,page,size,filter){
+	search(context, redirect, page,size, filter){
 		var header = auth.getAuthHeader();
 
 		context.$http.get(endpoints.products.search, {

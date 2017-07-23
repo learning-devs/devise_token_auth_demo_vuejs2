@@ -34,7 +34,6 @@
 
 					<div v-else>
 						<md-button class="md-raised md-accent" md-theme="blue" v-on:click.prevent="update">Editar</md-button>
-
 						<md-button class="md-raised md-accent" md-theme="blue" v-on:click="cancelEdit">Cancelar</md-button>
 					</div>
 				</form>
@@ -46,14 +45,14 @@
 		<md-card md-with-hover>
 			<md-card-content>
 				<md-table-card>
-					
+
 					<!--Encabezado-->
 					<md-input-container class="md-title">
 						<md-icon>search</md-icon>
 						<label>Buscar por nombre o descripción</label>
 						<md-input
-							v-model="product_search" 
-							v-on:keyup.native="search">							
+							v-model="product_search"
+							v-on:keyup.native="search">
 						</md-input>
 					</md-input-container>
 
@@ -100,6 +99,7 @@
 						v-on:size = "size"
 						v-on:page = "page">
 					</md-table-pagination>
+
 				</md-table-card>
 			</md-card-content>
 		</md-card>
@@ -182,19 +182,18 @@
 			/*se ejecuta despues de cambiar de pagina o el numero
 			de registos por pagina*/
 			pagination(evt){
-				product.getList(this, 'login',evt.page,evt.size);
+				product.getList(this, 'login', evt.page, evt.size);
 			},
 			/*se ejecuta cuando se cambia de pagina*/
 			page(evt){
 
 			},
 			search(){
-				console.log("pres");
-				product.search(this, 'login',this.table.page,this.table.per_page,this.product_search);
+				product.search(this, 'login', this.table.page, this.table.per_page, this.product_search);
 			}
 		},
 		created() {
-			product.getList(this, 'login',this.table.page,this.table.per_page);
+			product.getList(this, 'login', this.table.page, this.table.per_page);
 		},
 
 	}
