@@ -1,18 +1,20 @@
 # API demo Vue.js Client 
 
-> Cliente en Vue.js 2 para consumir API con autenticación usando Devise Token Auth.
+### Para propositos de aprendizaje.
 
-## Build Setup
+> Cliente en Vue.js 2 para consumir API con autenticación usando Devise Token Auth [click](https://github.com/learningruby/devise_token_auth_demo), con vue material para el diseño.
+
+## Iniciar proyecto
 
 ``` bash
-# install dependencies
+# instalar dependencias
 npm install
 
-# serve with hot reload at localhost:8080
+# Correr en el servidor localhost:8080
 npm run dev
 
-# build for production with minification
+# Compilacion minificada para producción
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Para mas detalles de como funciona las cosas, consultar [documentación de vue-loader](http://vuejs.github.io/vue-loader).

@@ -3,7 +3,7 @@ import { header_names } from './../localStorageVariables.js'
 import { user_names } from './../localStorageVariables.js'
 
 
-export default{
+export const auth ={
 	user: {
     	authenticated: false
   	},
@@ -135,11 +135,12 @@ export default{
 		localStorage.setItem(user_names.email,json.data.email);
 	},
 	getUserInformation(){
-		return user: {
+		var user = {
 			name: localStorage.getItem(user_names.name),
 			email: localStorage.getItem(user_names.email),
 			authenticated: this.user.authenticated
-		}
+		};
+		return user;
 	},
 	clearAuthHeader(){
 		localStorage.removeItem(header_names.access_token);
