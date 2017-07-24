@@ -63,8 +63,11 @@
 		},
 		methods: {
 			register() {
-				auth.login(this,this.user,'products');
+				auth.signup(this, this.user, 'products',this.$parent);
 			}
+		},
+		created() {
+			auth.tokenValid(this, 'products');
 		}
 	}
 </script>

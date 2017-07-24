@@ -22,6 +22,10 @@ Vue.material.registerTheme('blue', {
 	background: 'white'
 });
 
+Vue.material.registerTheme('black', {
+	primary: 'black'
+});
+
 const router = new VueRouter({
 	routes: routes,
 	mode: 'history'

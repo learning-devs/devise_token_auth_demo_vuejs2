@@ -12,16 +12,17 @@
 					<md-input-container>
 						<md-icon>account_circle</md-icon>
 						<label>Email</label>
-						<md-input type="email" v-model="user.email"></md-input>
+						<md-input required type="email" v-model="user.email"></md-input>
 					</md-input-container>
 
 					<md-input-container>
 						<md-icon>https</md-icon>
 						<label>Contraseña</label>
-						<md-input type="password" v-model="user.password"></md-input>
+						<md-input required type="password" v-model="user.password"></md-input>
 					</md-input-container>
 
 					<md-button type="submit" class="md-raised md-accent" md-theme="blue">Iniciar Sesión</md-button>
+					<router-link tag="md-button" v-bind:to="{ name:'recoverPassword' }">¿Olvidaste tu contraseña?</router-link>
 
 				</form>
 			</md-card-content>
@@ -44,13 +45,11 @@
 		},
 		methods: {
 			login() {
-				auth.login(this,this.user,'products');
+				auth.login(this, this.user, 'products',this.$parent);
 			}
 		},
 		created() {
-			if(auth.tokenValid()){
-				this.$router.push({ name: 'products' });
-			}
+			auth.tokenValid(this, 'products');
 		}
 
 	}
