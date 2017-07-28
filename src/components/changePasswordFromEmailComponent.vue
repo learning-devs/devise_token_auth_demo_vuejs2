@@ -67,7 +67,7 @@
 				this.loading = true;
 				const context = this;
 				setTimeout(function() {	
-					auth.changePasswordFromEmail(this, this.user, this.$parent, context.headers)	
+					auth.changePasswordFromEmail(context, context.user, context.$parent, context.headers)	
 					context.loading = false;
 					context.password = '';
 					context.password_confirmation = '';
