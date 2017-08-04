@@ -30,7 +30,7 @@
 						<span class="md-error" v-if="errors.price">{{ errors.price[0] }}</span>
 					</md-input-container>
 
-					<md-button v-if="!edit"class="md-raised md-accent" md-theme="blue" v-on:click.prevent="register">Registrar</md-button>
+					<md-button v-if="!edit" class="md-raised md-accent" md-theme="blue" v-on:click.prevent="register">Registrar</md-button>
 
 					<div v-else>
 						<md-button class="md-raised md-accent" md-theme="blue" v-on:click.prevent="update">Editar</md-button>
@@ -71,7 +71,7 @@
 							<md-table-row v-for="(product, indice) in products" :key="product.id">
 								<md-table-cell>{{ product.name }}</md-table-cell>
 								<md-table-cell>{{ product.description }}</md-table-cell>
-									<md-table-cell>{{ moneyFormat(product.price) }}</md-table-cell>
+									<md-table-cell>{{ product.price | moneyFormat }}</md-table-cell>
 									<md-table-cell>{{ product.user }}</md-table-cell>
 									<md-table-cell>
 										<div>
@@ -140,9 +140,6 @@
 		methods: {
 			register() {
 				product.register(this, this.products);
-			},
-			moneyFormat(n){
-				return util.moneyFormat(n);
 			},
 			setProductForm(indice){
 				this.edit = true;
