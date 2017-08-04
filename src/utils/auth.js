@@ -52,7 +52,7 @@ export const auth = {
 		})
 		.then(response => {
 			if (response && response.success) {
-				this.setUserInformation(response);
+				this.setUserInformation(response.data,context);
 				this.user.authenticated = true;
 				if (redirect) {
 					util.redirect(context, redirect);
@@ -108,7 +108,7 @@ export const auth = {
 		.then(response => {
 			if (response) {
 				this.clearAuthHeader();
-				this.clearUserInformation();
+				this.clearUserInformation(context);
 				this.user.authenticated = false;
 				if (redirect) {
 					util.redirect(context, redirect);
@@ -229,22 +229,10 @@ export const auth = {
 
 	/*
 		json = Json que contiene la información de usuario
+		context = Contexto del componente
 	*/
-	setUserInformation(json) {
-		localStorage.setItem(user_names.name , json.data.name);
-		localStorage.setItem(user_names.email, json.data.email);
-	},
-	/*
-		context = El conexto del componente
-	*/
-	getUserInformation(context) {
-		this.tokenValid(context);
-		var user = {
-			name: localStorage.getItem(user_names.name),
-			email: localStorage.getItem(user_names.email),
-			authenticated: this.user.authenticated
-		};
-		return user
+	setUserInformation(json,context) {
+		context.$store.dispatch('SIGN_IN_USER',json);
 	},
 	clearAuthHeader() {
 		localStorage.removeItem(header_names.access_token);
@@ -253,8 +241,10 @@ export const auth = {
 		localStorage.removeItem(header_names.expiry);
 		localStorage.removeItem(header_names.uid);
 	},
-	clearUserInformation() {
-		localStorage.removeItem(user_names.name);
-		localStorage.removeItem(user_names.email);
+	/*
+		context = El conexto del componente
+	*/
+	clearUserInformation(context) {
+		context.$store.dispatch('LOG_OUT_USER');
 	}
 }
