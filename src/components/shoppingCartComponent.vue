@@ -41,13 +41,16 @@
 			</md-card>
 
 			<!--Medios de pago-->
-			<div>
+			<div v-if="this.total.amount > 0">
 				<PayPal
-				:amount= "this.total.amount"
-				:currency= "this.total.currency"
-				:client="credentials"
-				invoiceNumber="201701011000"
-				:dev="true">
+					:amount= "this.total.amount.toString()"
+					:currency= "this.total.currency"
+					:client="credentials"
+					invoiceNumber="201701011001"
+					:dev="true"
+					v-on:paypal-paymentAuthorized="paymentAuthorized"
+					v-on:paypal-paymentCompleted="paymentCompleted"
+					v-on:paypal-paymentCancelled="paymentCancelled">
 				</PayPal>
 			</div>
 		</md-card>
@@ -77,6 +80,15 @@
 		methods: {
 			remove(indice){
 				store.dispatch('REMOVE_PRODUCT_SHOPPING_CART',indice)
+			},
+			paymentAuthorized(data){
+
+			},
+			paymentCompleted(data){
+
+			},
+			paymentCancelled(data){
+
 			}
 		},
 		computed: {
