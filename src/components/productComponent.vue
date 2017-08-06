@@ -75,11 +75,14 @@
 									<md-table-cell>{{ product.user }}</md-table-cell>
 									<md-table-cell>
 										<div>
+											<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id, indice)">
+												<md-icon>delete</md-icon>
+											</md-button>
 											<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="setProductForm(indice)">
 												<md-icon>mode_edit</md-icon>
 											</md-button>
-											<md-button class="md-fab md-mini md-warn" md-theme="blue" v-on:click="remove(product.id, indice)">
-												<md-icon>delete</md-icon>
+											<md-button class="md-fab md-mini md-primary" md-theme="blue" v-on:click="addShoppingCart(indice)">
+												<md-icon>add_shopping_cart</md-icon>
 											</md-button>
 										</div>
 									</md-table-cell>
@@ -109,6 +112,7 @@
 <script>
 	import { util } from './../utils/util.js'
 	import { product } from './../utils/products.js'
+	import store from './../store'
 
 	export default {
 		data() {
@@ -138,6 +142,9 @@
 			}
 		},
 		methods: {
+			addShoppingCart(indice){
+				store.dispatch('ADD_PRODUCT_SHOPPING_CART',this.products[indice])
+			},
 			register() {
 				product.register(this, this.products);
 			},

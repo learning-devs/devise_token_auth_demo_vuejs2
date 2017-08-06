@@ -32,10 +32,17 @@ const ChangePasswordFromEmailComponent = resolve =>{
 	})
 }
 
+const ShoppingCartComponent = resolve =>{
+	require.ensure(['./components/shoppingCartComponent.vue'],() =>{
+		resolve(require('./components/shoppingCartComponent.vue'));
+	})
+}
+
 export const routes = [
 	{ path:'', component: LoginComponent, name: 'login'},
 	{ path:'/users/create', component: RegisterUserComponent, name: 'registerUser'},
 	{ path:'/products', component: ProductComponent, name: 'products'},
+	{ path: '/shoppingCartComponent', component: ShoppingCartComponent, name:'shoppingCart'},
 	{ path:'/recover-password', component: RecoverPasswordComponent, name: 'recoverPassword'},
 	{ path:'/change-password', component: ChangePasswordComponent, name: 'changePassword'},
 	{ path:'/change-password-from-email', component: ChangePasswordFromEmailComponent, name: 'changePasswordFromEmail'},

@@ -2,6 +2,7 @@
 	<div>
 		<div v-if="userAuthenticated">
 			 <md-button>{{ userName }}</md-button>
+			 <router-link tag="md-button" v-bind:to="{ name: 'shoppingCart' }" class="md-raised">Carrito Compras: {{ quantityProducts }}</router-link>
 			 <router-link tag="md-button" v-bind:to="{ name: 'changePassword' }" class="md-raised">Cambiar Contraseña</router-link>
 			 <md-button class="md-raised" v-on:click="logout">Cerrar sesion</md-button>
 		</div>
@@ -31,7 +32,13 @@
 			},
 			userAuthenticated(){
 				return store.getters.userAuthenticated;
+			},
+			quantityProducts(){
+				return store.getters.productsQuantity;
 			}
+		},
+		created(){
+			auth.tokenValid(this);
 		}
 	}
 </script>

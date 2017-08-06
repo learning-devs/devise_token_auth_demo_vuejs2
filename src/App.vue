@@ -2,9 +2,11 @@
 	<div id="app">
 
 		<md-whiteframe md-tag="md-toolbar" md-elevation="2" md-theme="black" class="md-primary">
-			<md-button class="md-icon-button">
+
+			<router-link tag="md-button" v-bind:to="{ name: 'login' }" class="md-icon-button">
 				<md-icon>home</md-icon>
-			</md-button>
+			</router-link>
+
 			<h2 class="md-title" style="flex: 1">Demo API</h2>
 			<navegation></navegation>
 		</md-whiteframe>

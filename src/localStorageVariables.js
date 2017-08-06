@@ -5,3 +5,7 @@ export const header_names = {
     expiry: 'expiry',
     token_type: 'token-type'
 };
+
+export const product_list_names = {
+    product_list: 'product_list'
+};

@@ -7,6 +7,7 @@ import { routes } from './routes.js'
 import Vuex from 'vuex'
 import store from './store'
 
+
 Vue.use(VueMaterial);
 Vue.use(VueRouter);
 Vue.use(VueResource);

@@ -72,6 +72,9 @@
 					context.current_password = '';
 				}, 2000);
 			}
+		},
+		created(){
+			auth.tokenValid(this,null,'login');
 		}
 
 	}
