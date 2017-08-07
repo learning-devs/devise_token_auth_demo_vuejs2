@@ -6,9 +6,6 @@ const mutations = {
     },
     REMOVE_PRODUCT_SHOPPING_CART_MUTATION: (state, indice) => {
       state.productList.splice(indice, 1);
-    },
-    SUM_QUANTITY_PRODUCT_SHOPPING_CART_MUTATION:(state,producto) => {
-      
     }
 }
 

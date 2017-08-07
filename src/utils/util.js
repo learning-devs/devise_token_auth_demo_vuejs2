@@ -6,6 +6,19 @@ export const util = {
     redirect(context, redirect) {
         context.$router.push({ name: redirect });
     },
+    /*
+        len = tamaño del la cadena
+     */
+    random_text(len){
+        var text = " ";
+
+        var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < len; i++ )
+            text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+        return text;
+    },
     custom_alert: {
         alert: {
             title: 'Ups...',

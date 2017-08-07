@@ -4,9 +4,6 @@ const actions = {
     },
     REMOVE_PRODUCT_SHOPPING_CART: ({ commit }, indice) => {
         commit('REMOVE_PRODUCT_SHOPPING_CART_MUTATION', indice)
-    },
-    SUM_QUANTITY_PRODUCT_SHOPPING_CART: ({ commit }, product) => {
-        commit('SUM_QUANTITY_PRODUCT_SHOPPING_CART_MUTATION',product)
     }
 }
 

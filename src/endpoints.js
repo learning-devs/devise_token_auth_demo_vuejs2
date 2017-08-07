@@ -10,5 +10,9 @@ export const endpoints = {
 	products: {
 		base: 'products',
 		search: 'products/search'
+	},
+	payments: {
+		base: 'payments',
+		paypal: 'payments/paypal'
 	}
 }
