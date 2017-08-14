@@ -198,6 +198,23 @@
 		},
 		created() {
 			product.getList(this, 'login', this.table.page, this.table.per_page);
+
+			//Connection to action cable channel Product
+			this.$cable.subscriptions.create({channel: 'ProductChannel'}, {
+				conected(){
+
+				},
+
+				disconected(){
+
+				},
+
+				received(data){
+					if (data.action == "new product") {
+						console.log(data);
+					}
+				}
+			});
 		},
 
 	}

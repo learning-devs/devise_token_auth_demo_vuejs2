@@ -7,6 +7,8 @@ import { routes } from './routes.js'
 import Vuex from 'vuex'
 import store from './store'
 
+import ActionCable from 'actioncable'
+
 
 Vue.use(VueMaterial);
 Vue.use(VueRouter);
@@ -15,6 +17,11 @@ Vue.use(Vuex);
 
 const route_service = 'http://localhost:3000';
 const version = '/api/v1/';
+
+
+const cable = ActionCable.createConsumer('ws://' + route_service.replace(/.*?:\/\//g, '')+ version+ '/cable ');
+
+Vue.prototype.$cable = cable
 
 Vue.http.options.root = route_service + version;
 
